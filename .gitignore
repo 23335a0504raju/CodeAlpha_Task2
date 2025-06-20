@@ -14,6 +14,10 @@ db.sqlite3
 *.DS_Store
 .vscode/
 
+*.zip
+*.mp4
+
+
 echo "backend/.env" >> .gitignore
 git rm --cached backend/.env
 git add .gitignore
