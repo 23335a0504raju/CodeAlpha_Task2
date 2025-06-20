@@ -1,0 +1,250 @@
+.menCollection {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Hero Banner - Fixed gradient syntax */
+.heroBanner {
+  background: 
+    linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
+    url('../../public/Products/1.jpeg');
+  background-size: cover;
+  background-position: center;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+  margin-bottom: 40px;
+  border-radius: 8px;
+}
+
+.heroBanner h1 {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+.heroBanner p {
+  font-size: 1.2rem;
+  max-width: 600px;
+}
+
+/* Section Titles */
+.sectionTitle {
+  text-align: center;
+  margin: 40px 0 30px;
+  font-size: 2rem;
+  position: relative;
+}
+
+.sectionTitle::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 3px;
+  background: #333;
+  margin: 15px auto;
+}
+
+/* Categories Grid */
+.categoryGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 25px;
+  margin-bottom: 50px;
+}
+
+.categoryCard {
+  text-decoration: none;
+  color: #333;
+  transition: transform 0.3s ease;
+}
+
+.categoryCard:hover {
+  transform: translateY(-5px);
+}
+
+.categoryImageContainer {
+  position: relative;
+  height: 250px;
+  overflow: hidden;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.categoryImageContainer img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.categoryCard:hover .categoryImageContainer img {
+  transform: scale(1.05);
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.2);
+  transition: background 0.3s ease;
+}
+
+.categoryCard:hover .overlay {
+  background: rgba(0,0,0,0.4);
+}
+
+.categoryCard h3 {
+  text-align: center;
+  font-size: 1.3rem;
+}
+
+/* Product Grid */
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+  margin-bottom: 50px;
+}
+
+.productCard {
+  border: 1px solid #eee;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+}
+
+.productCard:hover {
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.productImageContainer {
+  position: relative;
+  height: 300px;
+  overflow: hidden;
+}
+
+.productImageContainer img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.quickView {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 8px 20px;
+  background: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  font-weight: bold;
+}
+
+.productCard:hover .quickView {
+  opacity: 1;
+}
+
+.productInfo {
+  padding: 20px;
+}
+
+.productInfo h3 {
+  margin: 0 0 10px;
+  font-size: 1.1rem;
+}
+
+.category {
+  color: #666;
+  margin: 0 0 10px;
+  font-size: 0.9rem;
+}
+
+.colorOptions {
+  display: flex;
+  gap: 8px;
+  margin: 10px 0;
+}
+
+.colorDot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+}
+
+.price {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin: 15px 0;
+}
+
+.addToCart {
+  width: 100%;
+  padding: 10px;
+  background: #333;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.addToCart:hover {
+  background: #555;
+}
+
+/* New Arrivals - Fixed gradient syntax */
+.newArrivals {
+  background: 
+    linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+    url("../../public/Products/2.jpeg");
+  background-size: cover;
+  background-position: center;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  margin-bottom: 40px;
+}
+
+.newArrivalsContent {
+  text-align: center;
+  color: white;
+}
+
+.newArrivals h2 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.newArrivals p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.shopNowBtn {
+  display: inline-block;
+  padding: 12px 30px;
+  background: white;
+  color: #333;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: bold;
+  transition: transform 0.3s ease;
+}
+
+.shopNowBtn:hover {
+  transform: scale(1.05);
+}
