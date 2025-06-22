@@ -43,7 +43,7 @@ const Register = ({ setIsAuthenticated }) => {
 
         try {
             // 1. Registration API call
-            const registerResponse = await fetch('http://127.0.0.1:8000/api/register/', {
+            const registerResponse = await fetch('https://codealpha-task2.onrender.com/api/register/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -67,7 +67,7 @@ const Register = ({ setIsAuthenticated }) => {
             }
 
             // 2. Auto-login after successful registration
-            const loginResponse = await fetch('http://127.0.0.1:8000/api/login/', {
+            const loginResponse = await fetch('https://codealpha-task2.onrender.com/api/login/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

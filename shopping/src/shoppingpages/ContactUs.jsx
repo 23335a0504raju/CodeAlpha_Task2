@@ -48,7 +48,7 @@ const ContactUs = () => {
     setError('');
     
     try {
-      const response = await axios.post('http://localhost:1000/api/contact/submit', formData, {
+      const response = await axios.post('https://codealpha-task2.onrender.com/api/contact/submit', formData, {
         headers: {
           'Content-Type': 'application/json'
         }

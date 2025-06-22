@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useEffect, useState } from 'react';
 import styles from '../styles/BestSellers.module.css';
 
 const BestSellers = () => {
@@ -13,7 +13,7 @@ const BestSellers = () => {
   useEffect(() => {
     const fetchBestSellers = async () => {
       try {
-        const res = await axios.get('http://localhost:1000/api/product/bestsellers');
+        const res = await axios.get('https://codealpha-task2.onrender.com/api/product/bestsellers');
         setBestSellers(res.data);
       } catch (err) {
         console.error('Error fetching best sellers:', err);
@@ -28,7 +28,7 @@ const BestSellers = () => {
 
   const addToCart = async (productId) => {
     try {
-      await axios.post(`http://localhost:1000/api/cart/${userId}`, {
+      await axios.post(`https://codealpha-task2.onrender.com/api/cart/${userId}`, {
         productId,
         quantity: 1,
       });

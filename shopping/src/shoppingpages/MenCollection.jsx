@@ -19,7 +19,7 @@ const MenCollection = () => {
           return;
         }
 
-        const response = await axios.get('http://127.0.0.1:8000/api/products/', {
+        const response = await axios.get('https://codealpha-task2.onrender.com/api/products/', {
           headers: {
             'Authorization': `Token ${token}`
           }
@@ -60,7 +60,7 @@ const MenCollection = () => {
     }
 
     const response = await axios.post(
-      'http://127.0.0.1:8000/api/cart/items/',
+      'https://codealpha-task2.onrender.com/api/cart/items/',
       {
         product_id: product.id,
         price: product.price, // Include the current price

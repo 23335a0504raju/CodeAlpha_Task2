@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styles from '../styles/CategoryPage.module.css';
 
@@ -15,7 +15,7 @@ const CategoryPage = () => {
       try {
         setLoading(true);
         setError(null);
-        const res = await axios.get(`http://localhost:1000/api/product/category/${categoryName}`);
+        const res = await axios.get(`https://codealpha-task2.onrender.com/api/product/category/${categoryName}`);
         setProducts(res.data);
       } catch (error) {
         console.error('Error fetching category products:', error);
@@ -30,7 +30,7 @@ const CategoryPage = () => {
 
   const addToCart = async (productId) => {
     try {
-      await axios.post(`http://localhost:1000/api/cart/${userId}`, {
+      await axios.post(`https://codealpha-task2.onrender.com/api/cart/${userId}`, {
         productId,
         quantity: 1, // You can make this dynamic based on quantity selection if needed
       });

@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useEffect, useState } from 'react';
 import styles from '../styles/Products.module.css';
 
 const Products = () => {
@@ -12,7 +12,7 @@ const Products = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axios.get('http://localhost:1000/api/product');
+        const res = await axios.get('https://codealpha-task2.onrender.com/api/product');
         // Only take the first three products
         setProducts(res.data.slice(0, 3));
         setLoading(false);
@@ -28,7 +28,7 @@ const Products = () => {
 
   const addToCart = async (productId) => {
     try {
-      await axios.post(`http://localhost:1000/api/cart/${userId}`, {
+      await axios.post(`https://codealpha-task2.onrender.com/api/cart/${userId}`, {
         productId,
         quantity: 1,
       });

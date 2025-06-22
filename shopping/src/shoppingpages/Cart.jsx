@@ -23,7 +23,7 @@ const Cart = ({ onClose }) => {
         return;
       }
 
-      const response = await axios.get('http://127.0.0.1:8000/api/cart/', {
+      const response = await axios.get('https://codealpha-task2.onrender.com/api/cart/', {
         headers: {
           'Authorization': `Token ${token}`
         }
@@ -45,7 +45,7 @@ const Cart = ({ onClose }) => {
   const removeFromCart = async (itemId) => {
     try {
       const token = localStorage.getItem('authToken');
-      await axios.delete(`http://127.0.0.1:8000/api/cart/items/${itemId}/`, {
+      await axios.delete(`https://codealpha-task2.onrender.com/api/cart/items/${itemId}/`, {
         headers: {
           'Authorization': `Token ${token}`
         }
@@ -61,7 +61,7 @@ const Cart = ({ onClose }) => {
     try {
       const token = localStorage.getItem('authToken');
       await axios.patch(
-        `http://127.0.0.1:8000/api/cart/items/${itemId}/`,
+        `https://codealpha-task2.onrender.com/api/cart/items/${itemId}/`,
         { quantity: newQuantity },
         {
           headers: {
@@ -80,7 +80,7 @@ const Cart = ({ onClose }) => {
   // const clearCart = async () => {
   //   try {
   //     const token = localStorage.getItem('authToken');
-  //     await axios.delete('http://127.0.0.1:8000/api/cart/clear/', {
+  //     await axios.delete('https://codealpha-task2.onrender.com/api/cart/clear/', {
   //       headers: {
   //         'Authorization': `Token ${token}`
   //       }
@@ -110,7 +110,7 @@ const Cart = ({ onClose }) => {
     }
     
  
-    return `http://127.0.0.1:8000${imagePath}`;
+    return `https://codealpha-task2.onrender.com${imagePath}`;
   };
 
 

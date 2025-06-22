@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import searchStyles from '../styles/SearchPage.module.css';
 
 const SearchPage = () => {
@@ -18,7 +18,7 @@ const SearchPage = () => {
       setError(null);
       
       try {
-        const response = await axios.get(`http://localhost:1000/api/product/search?q=${encodeURIComponent(searchQuery)}`);
+        const response = await axios.get(`https://codealpha-task2.onrender.com/api/product/search?q=${encodeURIComponent(searchQuery)}`);
         setSearchResults(response.data);
       } catch (err) {
         console.error('Error fetching search results:', err);
@@ -33,7 +33,7 @@ const SearchPage = () => {
 
   const addToCart = async (productId) => {
     try {
-      await axios.post(`http://localhost:1000/api/cart/user123`, {
+      await axios.post(`https://codealpha-task2.onrender.com/api/cart/user123`, {
         productId,
         quantity: 1
       });
