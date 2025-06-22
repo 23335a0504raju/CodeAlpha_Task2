@@ -17,7 +17,7 @@ python manage.py collectstatic --noinput
 # Load products (only in production)
 if [ "$RENDER" ]; then
     echo "Loading products..."
-    python manage.py loadproducts || echo "Product loading failed or products already exist"
+    python manage.py loadproducts || echo "Product loading failed or products already exists"
 fi
 
 # Start Gunicorn

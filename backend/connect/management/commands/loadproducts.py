@@ -64,7 +64,7 @@ class Command(BaseCommand):
         created_count = 0
         
         for product_data in additional_products:
-            # Skip if product already exists
+            
             if Product.objects.filter(name=product_data["name"]).exists():
                 self.stdout.write(self.style.WARNING(
                     f"Product '{product_data['name']}' already exists. Skipping."
