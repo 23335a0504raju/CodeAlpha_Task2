@@ -19,21 +19,41 @@ const MenCollection = () => {
           return;
         }
 
-        const response = await axios.get('https://codealpha-task2.onrender.com/api/products/', {
-          headers: {
-            'Authorization': `Token ${token}`
-          }
-        });
+        // First try Render URL
+        let response;
+        try {
+          response = await axios.get('https://codealpha-task2.onrender.com/api/products/', {
+            headers: { 'Authorization': `Token ${token}` }
+          });
+        } catch (renderError) {
+          // Fallback to localhost if Render fails
+          response = await axios.get('http://localhost:8000/api/products/', {
+            headers: { 'Authorization': `Token ${token}` }
+          });
+        }
 
-        setProducts(response.data);
-
-        
-        const uniqueCategories = [...new Set(response.data.map(p => p.category))];
-        const categoryData = uniqueCategories.map((category, index) => ({
-          id: index + 1,
-          name: category,
-          image: response.data.find(p => p.category === category)?.image || '/placeholder.jpg'
+        const processedProducts = response.data.map(product => ({
+          ...product,
+          // Ensure image URL is absolute
+          image: product.image 
+            ? product.image.startsWith('http') 
+              ? product.image 
+              : `https://codealpha-task2.onrender.com${product.image}`
+            : '/placeholder.jpg'
         }));
+
+        setProducts(processedProducts);
+        
+        // Process categories
+        const uniqueCategories = [...new Set(processedProducts.map(p => p.category))];
+        const categoryData = uniqueCategories.map((category, index) => {
+          const categoryProduct = processedProducts.find(p => p.category === category);
+          return {
+            id: index + 1,
+            name: category,
+            image: categoryProduct?.image || '/placeholder.jpg'
+          };
+        });
         
         setCategories(categoryData);
         setLoading(false);
@@ -51,6 +71,7 @@ const MenCollection = () => {
     fetchData();
   }, [navigate]);
 
+  
   const handleAddToCart = async (product) => {
   try {
     const token = localStorage.getItem('authToken');
