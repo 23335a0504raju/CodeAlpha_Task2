@@ -16,7 +16,7 @@ mkdir -p static
 echo "Collecting static files..."
 python manage.py collectstatic --noinput
 
-python manage.py load_products
+python manage.py loadproducts
 # Start Gunicorn
 echo "Starting Gunicorn..."
 exec gunicorn backend.wsgi:application \
