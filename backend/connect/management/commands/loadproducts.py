@@ -61,26 +61,41 @@ class Command(BaseCommand):
             }
         ]
 
+        created_count = 0
+        
         for product_data in additional_products:
-                    product = Product.objects.create(
-                        name=product_data["name"],
-                        description=product_data["description"],
-                        price=product_data["price"],
-                        category=product_data["category"],
-                        colors=product_data["colors"]
-                    )
-                    
-                    if product_data["image_path"]:
-                        try:
-                            image_path = os.path.join(settings.BASE_DIR, 'media', product_data["image_path"])
-                            with open(image_path, 'rb') as f:
-                                product.image.save(
-                                    os.path.basename(product_data["image_path"]), 
-                                    File(f)
-                                )
-                                product.save()
-                        except FileNotFoundError:
-                            self.stdout.write(self.style.ERROR(f"Image not found: {product_data['image_path']}"))
-                            continue
+            # Skip if product already exists
+            if Product.objects.filter(name=product_data["name"]).exists():
+                self.stdout.write(self.style.WARNING(
+                    f"Product '{product_data['name']}' already exists. Skipping."
+                ))
+                continue
+                
+            product = Product.objects.create(
+                name=product_data["name"],
+                description=product_data["description"],
+                price=product_data["price"],
+                category=product_data["category"],
+                colors=product_data["colors"]
+            )
+            
+            if product_data["image_path"]:
+                try:
+                    image_path = os.path.join(settings.MEDIA_ROOT, product_data["image_path"])
+                    with open(image_path, 'rb') as f:
+                        product.image.save(
+                            os.path.basename(product_data["image_path"]), 
+                            File(f)
+                        )
+                        product.save()
+                        created_count += 1
+                except FileNotFoundError:
+                    self.stdout.write(self.style.ERROR(
+                        f"Image not found: {product_data['image_path']}"
+                    ))
+                    continue
 
-        self.stdout.write(self.style.SUCCESS(f"Successfully added {len(additional_products)} products"))
+        self.stdout.write(self.style.SUCCESS(
+            f"Successfully processed {len(additional_products)} products. "
+            f"Created {created_count} new products."
+        ))

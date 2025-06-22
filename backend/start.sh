@@ -4,19 +4,22 @@ set -o errexit
 # Create required directories
 mkdir -p staticfiles
 mkdir -p media
+mkdir -p static
 
 # Apply database migrations
 echo "Applying database migrations..."
 python manage.py migrate --noinput
 
-# Create static directory if it doesn't exist
-mkdir -p static
-
 # Collect static files
 echo "Collecting static files..."
 python manage.py collectstatic --noinput
 
-python manage.py loadproducts
+# Load products (only in production)
+if [ "$RENDER" ]; then
+    echo "Loading products..."
+    python manage.py loadproducts || echo "Product loading failed or products already exist"
+fi
+
 # Start Gunicorn
 echo "Starting Gunicorn..."
 exec gunicorn backend.wsgi:application \
