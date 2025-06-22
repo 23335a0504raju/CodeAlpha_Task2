@@ -9,19 +9,17 @@ mkdir -p media
 echo "Applying database migrations..."
 python manage.py migrate --noinput
 
+# Create static directory if it doesn't exist
+mkdir -p static
+
 # Collect static files
 echo "Collecting static files..."
 python manage.py collectstatic --noinput
 
-# Start server based on configuration
-if [ -f "backend/asgi.py" ] && [ "$USE_ASGI" = "true" ]; then
-    echo "Starting Daphne (ASGI) server..."
-    exec daphne -b 0.0.0.0 -p $PORT backend.asgi:application
-else
-    echo "Starting Gunicorn (WSGI) server..."
-    exec gunicorn backend.wsgi:application \
-        --bind 0.0.0.0:$PORT \
-        --workers 4 \
-        --timeout 120 \
-        --log-level=info
-fi
+# Start Gunicorn
+echo "Starting Gunicorn..."
+exec gunicorn backend.wsgi:application \
+    --bind 0.0.0.0:$PORT \
+    --workers 4 \
+    --timeout 120 \
+    --log-level=info
